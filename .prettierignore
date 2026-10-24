@@ -22,6 +22,9 @@ node_modules/
 /pyrightconfig.json
 /ruff.toml
 
+# Generator outputs
+example_workflows/assets/hosts/*.png
+
 # Paths that configurations leave out, such as installed dependencies and local secrets
 **/.dev.vars
 **/.dev.vars.*

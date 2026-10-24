@@ -83,10 +83,10 @@
                 "Node name for S&R": "PrimitiveStringMultiline"
             },
             "widgets_values": [
-                "Saved observation by gemini-4-argon of male-6.jpg (reference) and male-9.jpg (candidate). These are existing example photographs.\n\nBoth photographs show subjects with short dark hair standing and facing the camera in a medium shot. Several visible features change between the images:\n\n*   **Clothing and colors:** The reference (Image 1) shows a tucked-in black button-down shirt and textured gray trousers. The candidate (Image 2) features an open light-gray collared jacket over a white and tan color-blocked t-shirt, dark pants, and a silver cross necklace.\n*   **Hairstyle:** Image 1 shows thick black hair brushed upward, while Image 2 has shorter dark hair with closely faded sides.\n*   **Glasses:** No glasses appear in Image 1, whereas black rectangular glasses are worn in Image 2.\n*   **Facial hair:** Image 1 displays a short dark beard and mustache; Image 2 shows no visible facial hair.\n*   **Pose:** In Image 1, the subject smiles showing teeth with both hands in pockets. In Image 2, the subject has a closed-mouth expression with arms hanging at the sides.\n*   **Background:** Image 1 has a plain white backdrop, while Image 2 shows an outdoor urban scene with a yellow transit vehicle and a building."
+                "Saved visual observation of female-15-1.png (reference) and female-15-2.png (candidate). These are the exact example photographs; this observation was checked manually against both images.\n\nReference: A seated presenter faces the camera. Her brown hair is tied back with loose strands at the front. She wears a white cropped long-sleeved cardigan over a gray halter-style top and high-waisted gray shorts. A plain light-gray wall and part of the bench are visible.\n\nCandidate: The presenter has the same visible tied-back brown hairstyle, white cropped cardigan, gray halter-style top and gray shorts. The wider framing shows the gray padded bench and gray platform sandals. She smiles, looks down and raises one knee while adjusting a sandal. The pose, expression and framing differ from the reference. The background remains plain light gray.\n\nThe comparison describes visible appearance and wardrobe. It does not establish real-world identity."
             ],
             "widgets_values_named": {
-                "value": "Saved observation by gemini-4-argon of male-6.jpg (reference) and male-9.jpg (candidate). These are existing example photographs.\n\nBoth photographs show subjects with short dark hair standing and facing the camera in a medium shot. Several visible features change between the images:\n\n*   **Clothing and colors:** The reference (Image 1) shows a tucked-in black button-down shirt and textured gray trousers. The candidate (Image 2) features an open light-gray collared jacket over a white and tan color-blocked t-shirt, dark pants, and a silver cross necklace.\n*   **Hairstyle:** Image 1 shows thick black hair brushed upward, while Image 2 has shorter dark hair with closely faded sides.\n*   **Glasses:** No glasses appear in Image 1, whereas black rectangular glasses are worn in Image 2.\n*   **Facial hair:** Image 1 displays a short dark beard and mustache; Image 2 shows no visible facial hair.\n*   **Pose:** In Image 1, the subject smiles showing teeth with both hands in pockets. In Image 2, the subject has a closed-mouth expression with arms hanging at the sides.\n*   **Background:** Image 1 has a plain white backdrop, while Image 2 shows an outdoor urban scene with a yellow transit vehicle and a building."
+                "value": "Saved visual observation of female-15-1.png (reference) and female-15-2.png (candidate). These are the exact example photographs; this observation was checked manually against both images.\n\nReference: A seated presenter faces the camera. Her brown hair is tied back with loose strands at the front. She wears a white cropped long-sleeved cardigan over a gray halter-style top and high-waisted gray shorts. A plain light-gray wall and part of the bench are visible.\n\nCandidate: The presenter has the same visible tied-back brown hairstyle, white cropped cardigan, gray halter-style top and gray shorts. The wider framing shows the gray padded bench and gray platform sandals. She smiles, looks down and raises one knee while adjusting a sandal. The pose, expression and framing differ from the reference. The background remains plain light gray.\n\nThe comparison describes visible appearance and wardrobe. It does not establish real-world identity."
             }
         },
         {
@@ -124,21 +124,21 @@
                     "links": [6]
                 }
             ],
-            "title": "Verify \u00b7 wardrobe preservation",
+            "title": "Verify \u00b7 appearance preservation",
             "properties": {
                 "Node name for S&R": "MubitVerify"
             },
             "widgets_values": [
                 0,
-                "For the candidate to meet the reference wardrobe requirement, it must retain the tucked-in black button-down shirt and textured gray trousers described in the reference. Judge the claim using the supplied observation.",
+                "The candidate must preserve the reference presenter's visible hairstyle and wardrobe: tied-back brown hair with loose front strands, a white cropped cardigan, a gray halter-style top and high-waisted gray shorts. Use the supplied visual observation. A different pose, expression or framing does not violate this requirement.",
                 "",
-                "The candidate preserves the reference wardrobe: a tucked-in black button-down shirt and textured gray trousers."
+                "The candidate preserves the reference presenter's visible hairstyle and gray-and-white outfit."
             ],
             "widgets_values_named": {
                 "run_number": 0,
-                "policy": "For the candidate to meet the reference wardrobe requirement, it must retain the tucked-in black button-down shirt and textured gray trousers described in the reference. Judge the claim using the supplied observation.",
+                "policy": "The candidate must preserve the reference presenter's visible hairstyle and wardrobe: tied-back brown hair with loose front strands, a white cropped cardigan, a gray halter-style top and high-waisted gray shorts. Use the supplied visual observation. A different pose, expression or framing does not violate this requirement.",
                 "evidence": "",
-                "claim": "The candidate preserves the reference wardrobe: a tucked-in black button-down shirt and textured gray trousers."
+                "claim": "The candidate preserves the reference presenter's visible hairstyle and gray-and-white outfit."
             }
         },
         {
@@ -249,13 +249,13 @@
                     "links": []
                 }
             ],
-            "title": "Reference \u00b7 black shirt",
+            "title": "Reference \u00b7 presenter",
             "properties": {
                 "Node name for S&R": "LoadImage"
             },
-            "widgets_values": ["male-6.jpg", "image"],
+            "widgets_values": ["female-15-1.png", "image"],
             "widgets_values_named": {
-                "image": "male-6.jpg",
+                "image": "female-15-1.png",
                 "upload": "image"
             }
         },
@@ -280,13 +280,13 @@
                     "links": []
                 }
             ],
-            "title": "Candidate \u00b7 light jacket",
+            "title": "Candidate \u00b7 alternate pose",
             "properties": {
                 "Node name for S&R": "LoadImage"
             },
-            "widgets_values": ["male-9.jpg", "image"],
+            "widgets_values": ["female-15-2.png", "image"],
             "widgets_values_named": {
-                "image": "male-9.jpg",
+                "image": "female-15-2.png",
                 "upload": "image"
             }
         },
@@ -302,10 +302,10 @@
             "outputs": [],
             "properties": {},
             "widgets_values": [
-                "## Start Here\n\n1. Set SAPLING_ENDPOINT in the server environment.\n2. Upload male-6.jpg as Reference and male-9.jpg as Candidate.\n3. Press Run and read the calibrated verdict and full result.\n\nThe saved Argon observation describes these exact photographs. Replace the images and evidence together for another comparison. Sapling checks the supplied text evidence."
+                "## Start Here\n\n1. Set SAPLING_ENDPOINT in the server environment.\n2. Upload female-15-1.png as Reference and female-15-2.png as Candidate.\n3. Press Run and read the calibrated verdict and full result.\n\nThe saved visual observation was checked manually against these exact photographs. Replace the images and evidence together for another comparison. Sapling checks the supplied text evidence."
             ],
             "widgets_values_named": {
-                "text": "## Start Here\n\n1. Set SAPLING_ENDPOINT in the server environment.\n2. Upload male-6.jpg as Reference and male-9.jpg as Candidate.\n3. Press Run and read the calibrated verdict and full result.\n\nThe saved Argon observation describes these exact photographs. Replace the images and evidence together for another comparison. Sapling checks the supplied text evidence."
+                "text": "## Start Here\n\n1. Set SAPLING_ENDPOINT in the server environment.\n2. Upload female-15-1.png as Reference and female-15-2.png as Candidate.\n3. Press Run and read the calibrated verdict and full result.\n\nThe saved visual observation was checked manually against these exact photographs. Replace the images and evidence together for another comparison. Sapling checks the supplied text evidence."
             },
             "color": "#432",
             "bgcolor": "#653",

@@ -10,3 +10,4 @@
 /pyrightconfig.json linguist-generated text eol=lf
 /ruff.toml linguist-generated text eol=lf
 # <<< gspot managed <<<
+example_workflows/assets/hosts/*.png binary linguist-vendored

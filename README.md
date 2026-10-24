@@ -59,17 +59,15 @@ Find **Ask** and **Verify** under **mubit** in the node menu.
 Open **Templates**, then **Extensions**, then **mubit**, or drag a workflow JSON from `example_workflows` onto the canvas.
 Both examples use mubit and stock ComfyUI nodes. Start with the **Start Here** note.
 
-![The mubit Finder category with its two workflow cards.](docs/images/screenshots/finder.jpg)
-
 | Workflow                                                                                 | What you see                                                                                                                 |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
 | [Draft and verify](example_workflows/mubit-01-draft-and-verify.json)                     | Product facts feed Ask and Verify. Inspect the structured script, calibrated verdict, complete result, and both request IDs. |
-| [Verify generation evidence](example_workflows/mubit-02-verify-generation-evidence.json) | Two existing presenter photographs and a saved Argon comparison demonstrate a wardrobe-preservation check.                   |
+| [Verify generation evidence](example_workflows/mubit-02-verify-generation-evidence.json) | Two photographs of the selected presenter and a saved visual observation demonstrate an appearance-preservation check.       |
 
-For the second example, upload [male-6.jpg](example_workflows/assets/hosts/male-6.jpg) and
-[male-9.jpg](example_workflows/assets/hosts/male-9.jpg) through the corresponding **Load Image** nodes.
-The first photo provides the reference wardrobe; the second provides a visibly different candidate wardrobe.
-The saved observation describes that exact pair. Queue the graph to verify the claim against that observation.
+For the second example, upload [female-15-1.png](example_workflows/assets/hosts/female-15-1.png) and
+[female-15-2.png](example_workflows/assets/hosts/female-15-2.png) through the corresponding **Load Image** nodes.
+The first photo provides the reference appearance; the second shows the same presenter in another pose.
+The saved visual observation describes that exact pair. Queue the graph to verify the claim against that observation.
 Replace the images and evidence together when checking another pair.
 
 ![The image-evidence workflow with both presenter photos, the saved observation, and Sapling's calibrated result.](docs/images/screenshots/evidence.jpg)
@@ -153,11 +151,3 @@ Failed Ask calls include the Mubit request ID when supplied. Use that ID to inve
 ## License
 
 Code uses the [MIT license](LICENSE.md).
-
-## References
-
-- [Mubit Gemini connection](https://docs.mubit.ai/guides/connect-gemini)
-- [Banyan Sapling](https://huggingface.co/MubitLabs/banyan-sapling)
-- [Mubit](https://mubit.ai/), whose official logo and mark appear in the artwork
-
-The artwork uses the OpenRouter model `openai/gpt-image-2.5-sunburst`.

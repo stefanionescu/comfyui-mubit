@@ -26,6 +26,7 @@
         ".editorconfig",
         "prettier.config.mjs",
         ".prettierignore",
+        "example_workflows/assets/hosts/*.png",
         "**/venv/**",
         "**/.dev.vars",
         "**/.dev.vars.*",
