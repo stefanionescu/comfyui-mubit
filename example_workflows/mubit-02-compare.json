@@ -1,0 +1,343 @@
+{
+    "id": "0796ecd3-d0dd-4f08-8f23-920a2223156d",
+    "revision": 0,
+    "last_node_id": 9,
+    "last_link_id": 7,
+    "nodes": [
+        {
+            "id": 1,
+            "type": "MubitModel",
+            "pos": [40, 40],
+            "size": [300, 210],
+            "flags": {},
+            "order": 0,
+            "mode": 0,
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "model",
+                    "type": "MUBIT_MODEL",
+                    "links": [1]
+                }
+            ],
+            "properties": {
+                "Node name for S&R": "MubitModel"
+            },
+            "widgets_values": ["OpenRouter", "google/gemini-4-argon", "high", 8192],
+            "widgets_values_named": {
+                "provider": "OpenRouter",
+                "model": "google/gemini-4-argon",
+                "reasoning": "high",
+                "max_tokens": 8192
+            }
+        },
+        {
+            "id": 2,
+            "type": "LoadImage",
+            "pos": [40, 330],
+            "size": [300, 430],
+            "flags": {},
+            "order": 1,
+            "mode": 0,
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "IMAGE",
+                    "type": "IMAGE",
+                    "links": [2]
+                },
+                {
+                    "name": "MASK",
+                    "type": "MASK",
+                    "links": []
+                }
+            ],
+            "title": "Image 1 \u00b7 Reference",
+            "properties": {
+                "Node name for S&R": "LoadImage"
+            },
+            "widgets_values": ["female-15-1.png", "image"],
+            "widgets_values_named": {
+                "image": "female-15-1.png",
+                "upload": "image"
+            }
+        },
+        {
+            "id": 3,
+            "type": "LoadImage",
+            "pos": [390, 330],
+            "size": [300, 430],
+            "flags": {},
+            "order": 2,
+            "mode": 0,
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "IMAGE",
+                    "type": "IMAGE",
+                    "links": [3]
+                },
+                {
+                    "name": "MASK",
+                    "type": "MASK",
+                    "links": []
+                }
+            ],
+            "title": "Image 2 \u00b7 Candidate",
+            "properties": {
+                "Node name for S&R": "LoadImage"
+            },
+            "widgets_values": ["female-15-2.png", "image"],
+            "widgets_values_named": {
+                "image": "female-15-2.png",
+                "upload": "image"
+            }
+        },
+        {
+            "id": 4,
+            "type": "MubitAsk",
+            "pos": [760, 40],
+            "size": [390, 540],
+            "flags": {},
+            "order": 4,
+            "mode": 0,
+            "inputs": [
+                {
+                    "name": "model",
+                    "type": "MUBIT_MODEL",
+                    "link": 1
+                },
+                {
+                    "name": "images.image0",
+                    "shape": 7,
+                    "type": "IMAGE",
+                    "link": 2
+                },
+                {
+                    "name": "images.image1",
+                    "shape": 7,
+                    "type": "IMAGE",
+                    "link": 3
+                },
+                {
+                    "name": "images.image2",
+                    "shape": 7,
+                    "type": "IMAGE",
+                    "link": null
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "text",
+                    "type": "STRING",
+                    "links": [4, 5]
+                },
+                {
+                    "name": "json",
+                    "type": "*",
+                    "links": []
+                },
+                {
+                    "name": "request_id",
+                    "type": "STRING",
+                    "links": []
+                }
+            ],
+            "title": "Observe the images",
+            "properties": {
+                "Node name for S&R": "MubitAsk"
+            },
+            "widgets_values": [
+                0,
+                "Describe only visible evidence needed to compare the subject's appearance. Keep the image order. State uncertainty when a feature is not visible.",
+                "Image 1 is the reference. Image 2 is the candidate. Describe the hairstyle and outfit in each image, then any visible differences. Separate appearance changes from changes in pose, expression or framing.",
+                ""
+            ],
+            "widgets_values_named": {
+                "run_number": 0,
+                "instructions": "Describe only visible evidence needed to compare the subject's appearance. Keep the image order. State uncertainty when a feature is not visible.",
+                "prompt": "Image 1 is the reference. Image 2 is the candidate. Describe the hairstyle and outfit in each image, then any visible differences. Separate appearance changes from changes in pose, expression or framing.",
+                "json_schema": ""
+            }
+        },
+        {
+            "id": 6,
+            "type": "PreviewAny",
+            "pos": [760, 640],
+            "size": [390, 310],
+            "flags": {},
+            "order": 6,
+            "mode": 0,
+            "inputs": [
+                {
+                    "name": "source",
+                    "type": "*",
+                    "link": 5
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "STRING",
+                    "type": "STRING",
+                    "links": []
+                }
+            ],
+            "title": "Observations",
+            "properties": {
+                "Node name for S&R": "PreviewAny"
+            },
+            "widgets_values": [],
+            "widgets_values_named": {}
+        },
+        {
+            "id": 7,
+            "type": "PreviewAny",
+            "pos": [1220, 640],
+            "size": [390, 140],
+            "flags": {},
+            "order": 7,
+            "mode": 0,
+            "inputs": [
+                {
+                    "name": "source",
+                    "type": "*",
+                    "link": 6
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "STRING",
+                    "type": "STRING",
+                    "links": []
+                }
+            ],
+            "title": "Verdict",
+            "properties": {
+                "Node name for S&R": "PreviewAny"
+            },
+            "widgets_values": [],
+            "widgets_values_named": {}
+        },
+        {
+            "id": 8,
+            "type": "PreviewAny",
+            "pos": [1660, 40],
+            "size": [430, 910],
+            "flags": {},
+            "order": 8,
+            "mode": 0,
+            "inputs": [
+                {
+                    "name": "source",
+                    "type": "*",
+                    "link": 7
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "STRING",
+                    "type": "STRING",
+                    "links": []
+                }
+            ],
+            "title": "Full result",
+            "properties": {
+                "Node name for S&R": "PreviewAny"
+            },
+            "widgets_values": [],
+            "widgets_values_named": {}
+        },
+        {
+            "id": 9,
+            "type": "MarkdownNote",
+            "pos": [390, 40],
+            "size": [300, 210],
+            "flags": {},
+            "order": 3,
+            "mode": 0,
+            "inputs": [],
+            "outputs": [],
+            "title": "Compare",
+            "properties": {},
+            "widgets_values": [
+                "## Compare\n\nImage 1 is the reference. Image 2 is the candidate.\n\nChoose an image-capable Model. Run to observe both photos and check the appearance claim."
+            ],
+            "widgets_values_named": {
+                "text": "## Compare\n\nImage 1 is the reference. Image 2 is the candidate.\n\nChoose an image-capable Model. Run to observe both photos and check the appearance claim."
+            },
+            "color": "#432",
+            "bgcolor": "#653"
+        },
+        {
+            "id": 5,
+            "type": "MubitVerify",
+            "pos": [1220, 40],
+            "size": [390, 540],
+            "flags": {},
+            "order": 5,
+            "mode": 0,
+            "inputs": [
+                {
+                    "name": "evidence",
+                    "type": "STRING",
+                    "widget": {
+                        "name": "evidence"
+                    },
+                    "link": 4
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "verdict",
+                    "type": "STRING",
+                    "links": [6]
+                },
+                {
+                    "name": "result",
+                    "type": "*",
+                    "links": [7]
+                },
+                {
+                    "name": "request_id",
+                    "type": "STRING",
+                    "links": []
+                }
+            ],
+            "title": "Check appearance",
+            "properties": {
+                "Node name for S&R": "MubitVerify"
+            },
+            "widgets_values": [
+                0,
+                "The candidate meets the appearance requirement when its hairstyle and main outfit match the reference. A different pose, expression or framing is allowed. Judge the claim using the supplied image observations.",
+                "",
+                "The candidate preserves the reference hairstyle and outfit."
+            ],
+            "widgets_values_named": {
+                "run_number": 0,
+                "policy": "The candidate meets the appearance requirement when its hairstyle and main outfit match the reference. A different pose, expression or framing is allowed. Judge the claim using the supplied image observations.",
+                "evidence": "",
+                "claim": "The candidate preserves the reference hairstyle and outfit."
+            }
+        }
+    ],
+    "links": [
+        [1, 1, 0, 4, 0, "MUBIT_MODEL"],
+        [2, 2, 0, 4, 1, "IMAGE"],
+        [3, 3, 0, 4, 2, "IMAGE"],
+        [4, 4, 0, 5, 0, "STRING"],
+        [5, 4, 0, 6, 0, "STRING"],
+        [6, 5, 0, 7, 0, "STRING"],
+        [7, 5, 1, 8, 0, "*"]
+    ],
+    "groups": [],
+    "config": {},
+    "extra": {
+        "ds": {
+            "scale": 0.463768115942029,
+            "offset": [315, 296.25]
+        },
+        "frontendVersion": "1.52.7"
+    },
+    "version": 0.4
+}

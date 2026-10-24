@@ -16,5 +16,5 @@ requires-comfyui = ">=0.37.2"
 [tool.deptry]
 known_first_party = ["src"]
 # ComfyUI supplies these modules in its application environment.
-per_rule_ignores.DEP001 = ["comfy", "comfy_api"]
-per_rule_ignores.DEP003 = ["comfy", "comfy_api"]
+per_rule_ignores.DEP001 = ["comfy", "comfy_api", "comfy_api_nodes"]
+per_rule_ignores.DEP003 = ["comfy", "comfy_api", "comfy_api_nodes"]

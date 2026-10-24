@@ -4,16 +4,29 @@ from __future__ import annotations
 
 import os
 import json
-from typing import cast, override
+from typing import TYPE_CHECKING, cast, override
+import asyncio
 
 from comfy_api.latest import io
+from comfy_api_nodes.util import tensor_to_base64_string
 
 from ..gateway import send_text
 from ..execution import wait_for_request
 
+if TYPE_CHECKING:
+    from ..models import Model
+
+
+def _encode_images(images: dict[str, io.Image.Type]) -> list[str]:
+    """Encode each connected image in socket and batch order without resizing."""
+    encoded: list[str] = []
+    for batch in images.values():
+        encoded.extend(tensor_to_base64_string(frame, total_pixels=None) for frame in batch)
+    return encoded
+
 
 class MubitAsk(io.ComfyNode):
-    """Generate text or structured JSON through the Mubit Gemini gateway."""
+    """Request text or structured JSON from a selected model through Mubit."""
 
     @classmethod
     @override
@@ -23,8 +36,9 @@ class MubitAsk(io.ComfyNode):
             node_id='MubitAsk',
             display_name='Ask',
             category='mubit',
-            description='Ask a Gemini model through Mubit. Credentials come from the server environment.',
+            description='Ask the selected model about text or connected images through Mubit.',
             inputs=[
+                io.Custom('MUBIT_MODEL').Input('model'),
                 io.Int.Input(
                     'run_number',
                     default=0,
@@ -32,9 +46,11 @@ class MubitAsk(io.ComfyNode):
                     max=2147483647,
                     tooltip='Change this number to send a fresh request with otherwise identical inputs.',
                 ),
-                io.Combo.Input('reasoning', options=['low', 'medium', 'high'], default='high'),
-                io.String.Input(
-                    'model', default='gemini-4-argon', tooltip='A model available through your Mubit account.'
+                io.Autogrow.Input(
+                    'images',
+                    template=io.Autogrow.TemplatePrefix(io.Image.Input('image'), prefix='image', min=0, max=100),
+                    optional=True,
+                    tooltip='Images in socket order. The selected model must support image inputs.',
                 ),
                 io.String.Input(
                     'instructions',
@@ -65,12 +81,12 @@ class MubitAsk(io.ComfyNode):
     @override
     async def execute(  # pyright: ignore[reportIncompatibleMethodOverride] # reason: ComfyUI awaits schema-defined inputs.
         cls,
+        model: Model,
         run_number: int,
-        reasoning: str,
-        model: str,
         instructions: str,
         prompt: str,
         json_schema: str = '',
+        images: dict[str, io.Image.Type] | None = None,
     ) -> io.NodeOutput:
         """Validate inputs, make one request and parse requested JSON once."""
         del run_number
@@ -78,11 +94,8 @@ class MubitAsk(io.ComfyNode):
         if not api_key:
             message = 'Set MUBIT_API_KEY in the ComfyUI server environment and restart ComfyUI.'
             raise ValueError(message)
-        if not all(value.strip() for value in (model, instructions, prompt)):
-            message = 'Model, instructions and prompt must contain text.'
-            raise ValueError(message)
-        if reasoning not in {'low', 'medium', 'high'}:
-            message = 'Reasoning must be low, medium or high.'
+        if not instructions.strip() or not prompt.strip():
+            message = 'Instructions and prompt must contain text.'
             raise ValueError(message)
         schema = None
         if json_schema.strip():
@@ -93,11 +106,11 @@ class MubitAsk(io.ComfyNode):
         text, request_id = await wait_for_request(
             send_text(
                 api_key=api_key,
-                model=model.strip(),
-                reasoning=reasoning,
+                model=model,
                 instructions=instructions,
                 prompt=prompt,
                 schema=cast('dict[str, object] | None', schema),
+                images=await asyncio.to_thread(_encode_images, images or {}),
             )
         )
         parsed = json.loads(text) if schema is not None else None

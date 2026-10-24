@@ -17,7 +17,7 @@ reason = "Each ComfyUI node needs its own schema and typed execute entry point; 
 
 [[ignore]]
 check = "naming/paths"
-paths = ["web/docs/MubitAsk.md", "web/docs/MubitVerify.md"]
+paths = ["web/docs/MubitAsk.md", "web/docs/MubitVerify.md", "web/docs/MubitModel.md"]
 reason = "ComfyUI locates each native help page using its exact registered node ID."
 
 [[ignore]]

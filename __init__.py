@@ -7,6 +7,7 @@ from typing import override
 from comfy_api.latest import ComfyExtension, io
 
 from .src.nodes.ask import MubitAsk
+from .src.nodes.model import MubitModel
 from .src.nodes.verify import MubitVerify
 
 WEB_DIRECTORY = './web'
@@ -18,7 +19,7 @@ class Extension(ComfyExtension):
     @override
     async def get_node_list(self) -> list[type[io.ComfyNode]]:
         """Return the registered node classes."""
-        return [MubitAsk, MubitVerify]
+        return [MubitModel, MubitAsk, MubitVerify]
 
 
 async def comfy_entrypoint() -> Extension:

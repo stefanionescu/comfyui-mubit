@@ -1,36 +1,37 @@
 # Ask
 
-Send one text request through the Mubit Gemini gateway.
-Set `MUBIT_API_KEY` in the ComfyUI server environment and connect a Gemini provider in Mubit.
+Ask the selected model about text or connected images through Mubit.
+Set `MUBIT_API_KEY` in the server environment and connect Model.
 
 ## Inputs
 
-| Input          | Behavior                                                                                |
-| -------------- | --------------------------------------------------------------------------------------- |
-| `run_number`   | Starts at zero. Change it to request another execution with otherwise identical inputs. |
-| `reasoning`    | Low, medium or high. Defaults to high.                                                  |
-| `model`        | Model ID available to your Mubit account. Defaults to `gemini-4-argon`.                 |
-| `instructions` | Stable task instructions, sent as the system instruction.                               |
-| `prompt`       | Current request and source facts, sent as user content.                                 |
-| `json_schema`  | Optional JSON Schema object. Leave empty for text.                                      |
+| Input          | Behavior                                                                                              |
+| -------------- | ----------------------------------------------------------------------------------------------------- |
+| `model`        | Provider and model settings from Model.                                                               |
+| `run_number`   | Change it to submit unchanged inputs again.                                                           |
+| `images`       | Optional image sockets. Each connection adds another socket. Images keep their size and socket order. |
+| `instructions` | Stable instructions for the task.                                                                     |
+| `prompt`       | The current request and source facts.                                                                 |
+| `json_schema`  | Optional JSON Schema object for a structured answer.                                                  |
 
 ## Outputs
 
-| Output       | What it carries                               |
-| ------------ | --------------------------------------------- |
-| `text`       | The complete answer text.                     |
-| `json`       | The parsed answer when a schema was supplied. |
-| `request_id` | The actual Mubit request ID.                  |
-
-Plain text requests return `None` on the JSON output. Connect any output to **Preview as Text** to inspect it.
+| Output       | What it carries                                               |
+| ------------ | ------------------------------------------------------------- |
+| `text`       | The complete answer.                                          |
+| `json`       | The parsed answer when a schema was supplied; otherwise None. |
+| `request_id` | The Mubit request ID when supplied.                           |
 
 ## Use
 
-1. Write the task in `instructions` and the current facts in `prompt`.
-2. Connect the outputs to **Preview as Text** or the next workflow step.
-3. Select **Run**. Change `run_number` to send the same request again.
+1. Connect Model and write the task instructions and prompt.
+2. For an image task, connect Load Image outputs in the order described by the prompt.
+3. Connect the answer to Preview as Text or the next workflow step, then select Run.
 
-For a structured answer, use a schema such as:
+Each image in a connected batch follows the other images from that socket. Choose a model with image support.
+For a comparison, describe the first image as the reference and the second as the candidate.
+
+For a structured answer, supply a schema such as:
 
 ```json
 {
@@ -43,7 +44,6 @@ For a structured answer, use a schema such as:
 }
 ```
 
-Missing configuration, blank required inputs and invalid schema JSON fail before submission.
-An incomplete, blocked, or malformed answer stops execution. Requests time out after 300 seconds.
-**Stop** cancels the local HTTP task. Requests have no automatic retries.
+Errors stop execution. Incomplete, blocked, or empty answers fail.
+Requests time out after 300 seconds without automatic retries. Stop cancels the local HTTP task.
 HTTP errors include the Mubit request ID when supplied.
