@@ -34,7 +34,7 @@ async def send_text(
             session.post(url, json=body, headers={'x-goog-api-key': api_key}, allow_redirects=False) as response,
         ):
             if response.status != HTTPStatus.OK:
-                message = f'Mubit returned HTTP {response.status}. Check your key, provider setup and model access.'
+                message = f'Mubit returned HTTP {response.status}. Check provider access, quota, and billing in Mubit.'
                 raise RuntimeError(message)
             result = await response.json()
             request_id = response.headers.get('x-middleware-request-id', '')

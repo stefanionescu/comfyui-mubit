@@ -180,7 +180,13 @@ class MubitVerify(io.ComfyNode):
         del run_number
         endpoint = os.environ.get('SAPLING_ENDPOINT', '').strip()
         address = urlsplit(endpoint)
-        if address.scheme != 'https' or not address.hostname or address.username or address.query or address.fragment:
+        if (
+            address.scheme != 'https'
+            or not address.hostname
+            or address.username is not None
+            or address.query
+            or address.fragment
+        ):
             message = 'Set SAPLING_ENDPOINT to the HTTPS inference URL, without credentials, query or fragment.'
             raise ValueError(message)
         if not all(value.strip() for value in (policy, evidence, claim)):
