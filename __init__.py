@@ -6,7 +6,8 @@ from typing import override
 
 from comfy_api.latest import ComfyExtension, io
 
-from .src.nodes import MubitAsk, MubitVerify
+from .src.nodes.ask import MubitAsk
+from .src.nodes.verify import MubitVerify
 
 WEB_DIRECTORY = './web'
 

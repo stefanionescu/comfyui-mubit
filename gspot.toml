@@ -12,7 +12,7 @@ quotes = "single"
 
 [[ignore]]
 check = "duplication/jscpd"
-paths = ["src/nodes.py"]
+paths = ["src/nodes/**"]
 reason = "Each ComfyUI node needs its own schema and typed execute entry point; the repeated declaration syntax belongs to those host interfaces."
 
 [[ignore]]
@@ -29,7 +29,7 @@ reason = "The extension name is mubit, including its lowercase README title."
 [[ignore]]
 check = "python/vulture"
 names = ["get_node_list", "comfy_entrypoint", "define_schema", "execute"]
-paths = ["__init__.py", "src/nodes.py"]
+paths = ["__init__.py", "src/nodes/**"]
 reason = "ComfyUI calls these registered entry points and node methods by name."
 
 [[ignore]]
@@ -40,5 +40,5 @@ reason = "ComfyUI reads the flat example_workflows folder as same-basename JSON 
 [[ignore]]
 check = "structure/trivial-functions"
 names = ["get_node_list", "comfy_entrypoint", "define_schema"]
-paths = ["__init__.py", "src/nodes.py"]
+paths = ["__init__.py", "src/nodes/**"]
 reason = "ComfyUI requires these entry points and schema methods."

@@ -32,6 +32,6 @@
         "**/.dev.vars.*",
         "**/bun.lock",
         "**/.env*",
-        "src/nodes.py"
+        "src/nodes/**"
     ]
 }
