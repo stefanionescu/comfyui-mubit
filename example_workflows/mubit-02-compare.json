@@ -7,8 +7,8 @@
         {
             "id": 13,
             "type": "MarkdownNote",
-            "pos": [710, 60],
-            "size": [400, 130],
+            "pos": [800, 30],
+            "size": [460, 160],
             "flags": {},
             "order": 0,
             "mode": 0,
@@ -30,8 +30,8 @@
         {
             "id": 14,
             "type": "MarkdownNote",
-            "pos": [1140, 60],
-            "size": [400, 130],
+            "pos": [1290, 30],
+            "size": [460, 160],
             "flags": {},
             "order": 1,
             "mode": 0,
@@ -53,8 +53,8 @@
         {
             "id": 15,
             "type": "MarkdownNote",
-            "pos": [1570, 60],
-            "size": [440, 130],
+            "pos": [1780, 30],
+            "size": [460, 160],
             "flags": {},
             "order": 2,
             "mode": 0,
@@ -76,8 +76,8 @@
         {
             "id": 12,
             "type": "MarkdownNote",
-            "pos": [0, 60],
-            "size": [680, 130],
+            "pos": [0, 30],
+            "size": [770, 160],
             "flags": {},
             "order": 3,
             "mode": 0,
@@ -99,8 +99,8 @@
         {
             "id": 1,
             "type": "MubitModel",
-            "pos": [30, 330],
-            "size": [300, 210],
+            "pos": [30, 350],
+            "size": [340, 150],
             "flags": {},
             "order": 4,
             "mode": 0,
@@ -126,8 +126,8 @@
         {
             "id": 2,
             "type": "LoadImage",
-            "pos": [30, 600],
-            "size": [300, 430],
+            "pos": [30, 560],
+            "size": [340, 520],
             "flags": {},
             "order": 5,
             "mode": 0,
@@ -157,8 +157,8 @@
         {
             "id": 3,
             "type": "LoadImage",
-            "pos": [380, 600],
-            "size": [300, 430],
+            "pos": [400, 560],
+            "size": [340, 520],
             "flags": {},
             "order": 6,
             "mode": 0,
@@ -188,8 +188,8 @@
         {
             "id": 4,
             "type": "PrimitiveStringMultiline",
-            "pos": [380, 330],
-            "size": [300, 210],
+            "pos": [400, 350],
+            "size": [340, 150],
             "flags": {},
             "order": 7,
             "mode": 0,
@@ -215,8 +215,8 @@
         {
             "id": 5,
             "type": "MubitAsk",
-            "pos": [740, 330],
-            "size": [390, 480],
+            "pos": [830, 350],
+            "size": [400, 540],
             "flags": {},
             "order": 8,
             "mode": 0,
@@ -290,8 +290,8 @@
         {
             "id": 6,
             "type": "MubitVerify",
-            "pos": [1170, 330],
-            "size": [390, 360],
+            "pos": [1320, 350],
+            "size": [400, 350],
             "flags": {},
             "order": 9,
             "mode": 0,
@@ -350,8 +350,8 @@
         {
             "id": 9,
             "type": "PreviewAny",
-            "pos": [740, 870],
-            "size": [390, 360],
+            "pos": [830, 950],
+            "size": [400, 300],
             "flags": {},
             "order": 10,
             "mode": 0,
@@ -379,8 +379,8 @@
         {
             "id": 10,
             "type": "PreviewAny",
-            "pos": [1170, 750],
-            "size": [390, 150],
+            "pos": [1320, 760],
+            "size": [400, 130],
             "flags": {},
             "order": 11,
             "mode": 0,
@@ -408,8 +408,8 @@
         {
             "id": 7,
             "type": "StringFormat",
-            "pos": [1170, 960],
-            "size": [390, 250],
+            "pos": [1320, 950],
+            "size": [400, 300],
             "flags": {},
             "order": 12,
             "mode": 0,
@@ -458,8 +458,8 @@
         {
             "id": 8,
             "type": "MubitAsk",
-            "pos": [1600, 330],
-            "size": [410, 480],
+            "pos": [1810, 350],
+            "size": [400, 540],
             "flags": {},
             "order": 13,
             "mode": 0,
@@ -521,8 +521,8 @@
         {
             "id": 11,
             "type": "PreviewAny",
-            "pos": [1600, 870],
-            "size": [410, 360],
+            "pos": [1810, 950],
+            "size": [400, 300],
             "flags": {},
             "order": 14,
             "mode": 0,
@@ -564,12 +564,41 @@
         [13, 6, 0, 10, 0, "STRING"],
         [14, 8, 1, 11, 0, "*"]
     ],
-    "groups": [],
+    "groups": [
+        {
+            "id": 1,
+            "title": "Input",
+            "bounding": [0, 240, 770, 870],
+            "color": "#55746b",
+            "flags": {}
+        },
+        {
+            "id": 2,
+            "title": "Observe",
+            "bounding": [800, 240, 460, 1040],
+            "color": "#68688c",
+            "flags": {}
+        },
+        {
+            "id": 3,
+            "title": "Verify",
+            "bounding": [1290, 240, 460, 1040],
+            "color": "#68688c",
+            "flags": {}
+        },
+        {
+            "id": 4,
+            "title": "Next step",
+            "bounding": [1780, 240, 460, 1040],
+            "color": "#68688c",
+            "flags": {}
+        }
+    ],
     "config": {},
     "extra": {
         "ds": {
-            "scale": 0.44262295081967207,
-            "offset": [440.92592592592587, 183.33333333333337]
+            "scale": 0.41538461538461535,
+            "offset": [420.74074074074065, 226.66666666666663]
         },
         "frontendVersion": "1.52.7"
     },

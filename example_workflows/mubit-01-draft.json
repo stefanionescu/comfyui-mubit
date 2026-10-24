@@ -7,8 +7,8 @@
         {
             "id": 9,
             "type": "MarkdownNote",
-            "pos": [430, 60],
-            "size": [400, 130],
+            "pos": [430, 30],
+            "size": [400, 160],
             "flags": {},
             "order": 0,
             "mode": 0,
@@ -30,8 +30,8 @@
         {
             "id": 10,
             "type": "MarkdownNote",
-            "pos": [860, 60],
-            "size": [400, 130],
+            "pos": [860, 30],
+            "size": [400, 160],
             "flags": {},
             "order": 1,
             "mode": 0,
@@ -53,8 +53,8 @@
         {
             "id": 8,
             "type": "MarkdownNote",
-            "pos": [0, 60],
-            "size": [400, 130],
+            "pos": [0, 30],
+            "size": [400, 160],
             "flags": {},
             "order": 2,
             "mode": 0,
@@ -76,7 +76,7 @@
         {
             "id": 1,
             "type": "PrimitiveStringMultiline",
-            "pos": [30, 320],
+            "pos": [30, 350],
             "size": [340, 260],
             "flags": {},
             "order": 3,
@@ -103,7 +103,7 @@
         {
             "id": 2,
             "type": "MubitVerify",
-            "pos": [460, 320],
+            "pos": [460, 350],
             "size": [340, 350],
             "flags": {},
             "order": 4,
@@ -155,7 +155,7 @@
         {
             "id": 3,
             "type": "MubitVerify",
-            "pos": [890, 320],
+            "pos": [890, 350],
             "size": [340, 350],
             "flags": {},
             "order": 5,
@@ -207,7 +207,7 @@
         {
             "id": 4,
             "type": "PreviewAny",
-            "pos": [460, 730],
+            "pos": [460, 760],
             "size": [340, 130],
             "flags": {},
             "order": 6,
@@ -236,8 +236,8 @@
         {
             "id": 6,
             "type": "PreviewAny",
-            "pos": [460, 920],
-            "size": [340, 380],
+            "pos": [460, 950],
+            "size": [340, 300],
             "flags": {},
             "order": 7,
             "mode": 0,
@@ -265,7 +265,7 @@
         {
             "id": 5,
             "type": "PreviewAny",
-            "pos": [890, 730],
+            "pos": [890, 760],
             "size": [340, 130],
             "flags": {},
             "order": 8,
@@ -294,8 +294,8 @@
         {
             "id": 7,
             "type": "PreviewAny",
-            "pos": [890, 920],
-            "size": [340, 380],
+            "pos": [890, 950],
+            "size": [340, 300],
             "flags": {},
             "order": 9,
             "mode": 0,
@@ -329,12 +329,34 @@
         [5, 2, 1, 6, 0, "*"],
         [6, 3, 1, 7, 0, "*"]
     ],
-    "groups": [],
+    "groups": [
+        {
+            "id": 1,
+            "title": "Input",
+            "bounding": [0, 240, 400, 400],
+            "color": "#55746b",
+            "flags": {}
+        },
+        {
+            "id": 2,
+            "title": "Draft",
+            "bounding": [430, 240, 400, 1040],
+            "color": "#68688c",
+            "flags": {}
+        },
+        {
+            "id": 3,
+            "title": "Correction",
+            "bounding": [860, 240, 400, 1040],
+            "color": "#68688c",
+            "flags": {}
+        }
+    ],
     "config": {},
     "extra": {
         "ds": {
-            "scale": 0.4186046511627907,
-            "offset": [898.8888888888889, 195]
+            "scale": 0.41538461538461535,
+            "offset": [910.7407407407406, 226.66666666666663]
         },
         "frontendVersion": "1.52.7"
     },
