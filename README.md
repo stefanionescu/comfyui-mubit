@@ -1,8 +1,8 @@
-# ![mubit: Ask models. Verify claims.](assets/banner.webp)
+# ![mubit: Ask models. Verify claims.](docs/images/brand/banner.webp)
 
-[![ComfyUI 0.37.2 or later](assets/badges/comfyui.svg)](#requirements)
-[![Python 3.12 or later](assets/badges/python.svg)](#requirements)
-[![MIT license](assets/badges/license.svg)](LICENSE.md)
+[![ComfyUI 0.37.2 or later](docs/images/badges/comfyui.svg)](#requirements)
+[![Python 3.12 or later](docs/images/badges/python.svg)](#requirements)
+[![MIT license](docs/images/badges/license.svg)](LICENSE.md)
 
 Ask Gemini through Mubit. Check a claim against evidence with Banyan Sapling.
 Connect the returned text, JSON, verdict and request IDs to your ComfyUI workflow.
@@ -59,7 +59,7 @@ Find **Ask** and **Verify** under **mubit** in the node menu.
 Open **Templates**, then **Extensions**, then **mubit**, or drag a workflow JSON from `example_workflows` onto the canvas.
 Both examples use mubit and stock ComfyUI nodes. Start with the **Start Here** note.
 
-![The mubit Finder category with its two workflow cards.](assets/screenshots/finder.jpg)
+![The mubit Finder category with its two workflow cards.](docs/images/screenshots/finder.jpg)
 
 | Workflow                                                                                 | What you see                                                                                                                 |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
@@ -72,7 +72,7 @@ The first photo provides the reference wardrobe; the second provides a visibly d
 The saved observation describes that exact pair. Queue the graph to verify the claim against that observation.
 Replace the images and evidence together when checking another pair.
 
-![The image-evidence workflow with both presenter photos, the saved observation, and Sapling's calibrated result.](assets/screenshots/evidence.jpg)
+![The image-evidence workflow with both presenter photos, the saved observation, and Sapling's calibrated result.](docs/images/screenshots/evidence.jpg)
 
 The images demonstrate the evidence path. The workflow uses saved observations; queueing it runs verification.
 In a generation controller, inspect each new image or clip first, pass those current observations to Verify,
