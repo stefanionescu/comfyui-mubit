@@ -11,6 +11,11 @@ enabled = true
 quotes = "single"
 
 [[ignore]]
+check = "duplication/jscpd"
+paths = ["src/nodes.py"]
+reason = "Each ComfyUI node needs its own schema and typed execute entry point; the repeated declaration syntax belongs to those host interfaces."
+
+[[ignore]]
 check = "prose/vale"
 rule = "gspot.title-case"
 paths = ["README.md"]

@@ -6,11 +6,13 @@ import os
 import json
 from typing import TYPE_CHECKING, cast, override
 import asyncio
+from urllib.parse import urlsplit
 
 from comfy_api.latest import io
 from comfy.model_management import throw_exception_if_processing_interrupted
 
 from .gateway import send_text
+from .sapling import verify_claim
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -76,11 +78,7 @@ class MubitAsk(io.ComfyNode):
                     tooltip='Optional JSON Schema object. Leave empty for a plain text answer.',
                 ),
             ],
-            outputs=[
-                io.String.Output('text'),
-                io.AnyType.Output('json'),
-                io.String.Output('request_id'),
-            ],
+            outputs=[io.String.Output('text'), io.AnyType.Output('json'), io.String.Output('request_id')],
         )
 
     @classmethod
@@ -124,3 +122,77 @@ class MubitAsk(io.ComfyNode):
         )
         parsed = json.loads(text) if schema is not None else None
         return io.NodeOutput(text, parsed, request_id)
+
+
+class MubitVerify(io.ComfyNode):
+    """Evaluate the relation between supplied text evidence, policy, and claim."""
+
+    @classmethod
+    @override
+    def define_schema(cls) -> io.Schema:
+        """Describe the verification inputs and calibrated outputs."""
+        return io.Schema(
+            node_id='MubitVerify',
+            display_name='Verify',
+            category='mubit',
+            description='Verify text evidence with Banyan Sapling. Media requires an actual inspection first.',
+            inputs=[
+                io.Int.Input(
+                    'run_number',
+                    default=0,
+                    min=0,
+                    max=2147483647,
+                    tooltip='Change this number to verify unchanged inputs again.',
+                ),
+                io.String.Input(
+                    'policy',
+                    multiline=True,
+                    dynamic_prompts=False,
+                    default='Every factual assertion in the claim must follow from the evidence.',
+                    tooltip='The rule against which to evaluate the claim.',
+                ),
+                io.String.Input(
+                    'evidence',
+                    multiline=True,
+                    dynamic_prompts=False,
+                    tooltip='Source facts, or an actual observation of the generated media.',
+                ),
+                io.String.Input(
+                    'claim',
+                    multiline=True,
+                    dynamic_prompts=False,
+                    tooltip='The exact assertion to evaluate under the policy.',
+                ),
+            ],
+            outputs=[io.String.Output('verdict'), io.AnyType.Output('result'), io.String.Output('request_id')],
+        )
+
+    @classmethod
+    @override
+    async def execute(  # pyright: ignore[reportIncompatibleMethodOverride] # reason: ComfyUI awaits schema-defined inputs.
+        cls,
+        run_number: int,
+        policy: str,
+        evidence: str,
+        claim: str,
+    ) -> io.NodeOutput:
+        """Send text evidence and return the exact calibrated verdict."""
+        del run_number
+        endpoint = os.environ.get('SAPLING_ENDPOINT', '').strip()
+        address = urlsplit(endpoint)
+        if address.scheme != 'https' or not address.hostname or address.username or address.query or address.fragment:
+            message = 'Set SAPLING_ENDPOINT to the HTTPS inference URL, without credentials, query or fragment.'
+            raise ValueError(message)
+        if not all(value.strip() for value in (policy, evidence, claim)):
+            message = 'Policy, evidence and claim must contain text.'
+            raise ValueError(message)
+        verdict, result, request_id = await _wait_for_request(
+            verify_claim(
+                endpoint=endpoint,
+                api_key=os.environ.get('SAPLING_API_KEY', '').strip(),
+                policy=policy,
+                evidence=evidence,
+                claim=claim,
+            )
+        )
+        return io.NodeOutput(verdict, result, request_id)
