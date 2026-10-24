@@ -31,5 +31,6 @@ Support for a positive requirement supports that requirement; support for a defe
 Keep uncertain results unresolved. The raw label does not replace the calibrated status.
 
 Verify receives text evidence. Connect images to Ask first for media observations.
+To check a correction, reuse the policy and evidence with the revised text as the claim.
 Errors stop execution. Requests time out after 300 seconds without automatic retries.
 Stop cancels the local HTTP task.

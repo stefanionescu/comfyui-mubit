@@ -1,50 +1,92 @@
 {
-    "id": "9feae191-3e70-462a-80bb-d4e8289afd0e",
+    "id": "d4484f16-30b8-420b-a761-a1c3f0e12dd1",
     "revision": 0,
-    "last_node_id": 8,
-    "last_link_id": 7,
+    "last_node_id": 10,
+    "last_link_id": 6,
     "nodes": [
         {
-            "id": 1,
-            "type": "MubitModel",
-            "pos": [40, 40],
-            "size": [300, 210],
+            "id": 9,
+            "type": "MarkdownNote",
+            "pos": [430, 60],
+            "size": [400, 130],
             "flags": {},
             "order": 0,
             "mode": 0,
             "inputs": [],
-            "outputs": [
-                {
-                    "name": "model",
-                    "type": "MUBIT_MODEL",
-                    "links": [1]
-                }
-            ],
+            "outputs": [],
+            "title": "Note",
             "properties": {
-                "Node name for S&R": "MubitModel"
+                "Node name for S&R": "MarkdownNote"
             },
-            "widgets_values": ["OpenRouter", "google/gemini-4-argon", "high", 8192],
+            "widgets_values": [
+                "**Draft** adds waterproof and battery claims that the supplied facts do not establish. **Draft verdict** and **Draft result** show Sapling's calibrated judgment."
+            ],
             "widgets_values_named": {
-                "provider": "OpenRouter",
-                "model": "google/gemini-4-argon",
-                "reasoning": "high",
-                "max_tokens": 8192
-            }
+                "text": "**Draft** adds waterproof and battery claims that the supplied facts do not establish. **Draft verdict** and **Draft result** show Sapling's calibrated judgment."
+            },
+            "color": "#432",
+            "bgcolor": "#653"
         },
         {
-            "id": 2,
-            "type": "PrimitiveStringMultiline",
-            "pos": [40, 310],
-            "size": [300, 280],
+            "id": 10,
+            "type": "MarkdownNote",
+            "pos": [860, 60],
+            "size": [400, 130],
             "flags": {},
             "order": 1,
+            "mode": 0,
+            "inputs": [],
+            "outputs": [],
+            "title": "Note",
+            "properties": {
+                "Node name for S&R": "MarkdownNote"
+            },
+            "widgets_values": [
+                "**Corrected draft** uses only the supplied facts. Both checks use the same evidence and policy. Read the actual result; `unsure` remains unresolved."
+            ],
+            "widgets_values_named": {
+                "text": "**Corrected draft** uses only the supplied facts. Both checks use the same evidence and policy. Read the actual result; `unsure` remains unresolved."
+            },
+            "color": "#432",
+            "bgcolor": "#653"
+        },
+        {
+            "id": 8,
+            "type": "MarkdownNote",
+            "pos": [0, 60],
+            "size": [400, 130],
+            "flags": {},
+            "order": 2,
+            "mode": 0,
+            "inputs": [],
+            "outputs": [],
+            "title": "Start Here",
+            "properties": {
+                "Node name for S&R": "MarkdownNote"
+            },
+            "widgets_values": [
+                "1. Set **SAPLING_ENDPOINT** in the ComfyUI server environment and restart ComfyUI.\n2. Edit **Product facts** and each Verify node's **claim**.\n3. Press **Run** to compare the two results."
+            ],
+            "widgets_values_named": {
+                "text": "1. Set **SAPLING_ENDPOINT** in the ComfyUI server environment and restart ComfyUI.\n2. Edit **Product facts** and each Verify node's **claim**.\n3. Press **Run** to compare the two results."
+            },
+            "color": "#432",
+            "bgcolor": "#653"
+        },
+        {
+            "id": 1,
+            "type": "PrimitiveStringMultiline",
+            "pos": [30, 320],
+            "size": [340, 260],
+            "flags": {},
+            "order": 3,
             "mode": 0,
             "inputs": [],
             "outputs": [
                 {
                     "name": "STRING",
                     "type": "STRING",
-                    "links": [2, 3]
+                    "links": [1, 2]
                 }
             ],
             "title": "Product facts",
@@ -52,80 +94,17 @@
                 "Node name for S&R": "PrimitiveStringMultiline"
             },
             "widgets_values": [
-                "Product: Bose SoundLink Flex portable speaker.\nFinish: graphite.\nVisible features: rounded rectangular grille and a side carrying strap."
+                "Product: Bose SoundLink Flex portable speaker.\nFinish: graphite.\nVisible features: rounded rectangular grille and a side carrying strap.\nThe supplied facts give no waterproof rating or battery duration."
             ],
             "widgets_values_named": {
-                "value": "Product: Bose SoundLink Flex portable speaker.\nFinish: graphite.\nVisible features: rounded rectangular grille and a side carrying strap."
+                "value": "Product: Bose SoundLink Flex portable speaker.\nFinish: graphite.\nVisible features: rounded rectangular grille and a side carrying strap.\nThe supplied facts give no waterproof rating or battery duration."
             }
         },
         {
-            "id": 3,
-            "type": "MubitAsk",
-            "pos": [410, 40],
-            "size": [380, 520],
-            "flags": {},
-            "order": 3,
-            "mode": 0,
-            "inputs": [
-                {
-                    "name": "model",
-                    "type": "MUBIT_MODEL",
-                    "link": 1
-                },
-                {
-                    "name": "images.image0",
-                    "shape": 7,
-                    "type": "IMAGE",
-                    "link": null
-                },
-                {
-                    "name": "prompt",
-                    "type": "STRING",
-                    "widget": {
-                        "name": "prompt"
-                    },
-                    "link": 2
-                }
-            ],
-            "outputs": [
-                {
-                    "name": "text",
-                    "type": "STRING",
-                    "links": [4, 5]
-                },
-                {
-                    "name": "json",
-                    "type": "*",
-                    "links": []
-                },
-                {
-                    "name": "request_id",
-                    "type": "STRING",
-                    "links": []
-                }
-            ],
-            "title": "Write the script",
-            "properties": {
-                "Node name for S&R": "MubitAsk"
-            },
-            "widgets_values": [
-                0,
-                "Write two short presentation sentences using only the supplied product facts. Keep every factual assertion grounded in those facts.",
-                "",
-                "{\"type\":\"object\",\"properties\":{\"script\":{\"type\":\"string\"}},\"required\":[\"script\"],\"additionalProperties\":false}"
-            ],
-            "widgets_values_named": {
-                "run_number": 0,
-                "instructions": "Write two short presentation sentences using only the supplied product facts. Keep every factual assertion grounded in those facts.",
-                "prompt": "",
-                "json_schema": "{\"type\":\"object\",\"properties\":{\"script\":{\"type\":\"string\"}},\"required\":[\"script\"],\"additionalProperties\":false}"
-            }
-        },
-        {
-            "id": 4,
+            "id": 2,
             "type": "MubitVerify",
-            "pos": [860, 40],
-            "size": [380, 520],
+            "pos": [460, 320],
+            "size": [340, 350],
             "flags": {},
             "order": 4,
             "mode": 0,
@@ -136,27 +115,19 @@
                     "widget": {
                         "name": "evidence"
                     },
-                    "link": 3
-                },
-                {
-                    "name": "claim",
-                    "type": "STRING",
-                    "widget": {
-                        "name": "claim"
-                    },
-                    "link": 4
+                    "link": 1
                 }
             ],
             "outputs": [
                 {
                     "name": "verdict",
                     "type": "STRING",
-                    "links": [6]
+                    "links": [3]
                 },
                 {
                     "name": "result",
                     "type": "*",
-                    "links": [7]
+                    "links": [5]
                 },
                 {
                     "name": "request_id",
@@ -164,30 +135,111 @@
                     "links": []
                 }
             ],
-            "title": "Check the script",
+            "title": "Draft",
             "properties": {
                 "Node name for S&R": "MubitVerify"
             },
             "widgets_values": [
                 0,
-                "Every factual assertion in the claim must follow from the supplied product facts.",
+                "Every factual assertion in the claim must follow from the supplied product facts. A feature with no supplied evidence remains unsupported.",
                 "",
-                ""
+                "This graphite speaker is completely waterproof and plays for twenty hours."
             ],
             "widgets_values_named": {
                 "run_number": 0,
-                "policy": "Every factual assertion in the claim must follow from the supplied product facts.",
+                "policy": "Every factual assertion in the claim must follow from the supplied product facts. A feature with no supplied evidence remains unsupported.",
                 "evidence": "",
-                "claim": ""
+                "claim": "This graphite speaker is completely waterproof and plays for twenty hours."
             }
         },
         {
-            "id": 5,
-            "type": "PreviewAny",
-            "pos": [410, 620],
-            "size": [380, 220],
+            "id": 3,
+            "type": "MubitVerify",
+            "pos": [890, 320],
+            "size": [340, 350],
             "flags": {},
             "order": 5,
+            "mode": 0,
+            "inputs": [
+                {
+                    "name": "evidence",
+                    "type": "STRING",
+                    "widget": {
+                        "name": "evidence"
+                    },
+                    "link": 2
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "verdict",
+                    "type": "STRING",
+                    "links": [4]
+                },
+                {
+                    "name": "result",
+                    "type": "*",
+                    "links": [6]
+                },
+                {
+                    "name": "request_id",
+                    "type": "STRING",
+                    "links": []
+                }
+            ],
+            "title": "Corrected draft",
+            "properties": {
+                "Node name for S&R": "MubitVerify"
+            },
+            "widgets_values": [
+                0,
+                "Every factual assertion in the claim must follow from the supplied product facts. A feature with no supplied evidence remains unsupported.",
+                "",
+                "This is the Bose SoundLink Flex portable speaker in graphite. It has a rounded rectangular grille and a side carrying strap."
+            ],
+            "widgets_values_named": {
+                "run_number": 0,
+                "policy": "Every factual assertion in the claim must follow from the supplied product facts. A feature with no supplied evidence remains unsupported.",
+                "evidence": "",
+                "claim": "This is the Bose SoundLink Flex portable speaker in graphite. It has a rounded rectangular grille and a side carrying strap."
+            }
+        },
+        {
+            "id": 4,
+            "type": "PreviewAny",
+            "pos": [460, 730],
+            "size": [340, 130],
+            "flags": {},
+            "order": 6,
+            "mode": 0,
+            "inputs": [
+                {
+                    "name": "source",
+                    "type": "*",
+                    "link": 3
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "STRING",
+                    "type": "STRING",
+                    "links": []
+                }
+            ],
+            "title": "Draft verdict",
+            "properties": {
+                "Node name for S&R": "PreviewAny"
+            },
+            "widgets_values": [],
+            "widgets_values_named": {}
+        },
+        {
+            "id": 6,
+            "type": "PreviewAny",
+            "pos": [460, 920],
+            "size": [340, 380],
+            "flags": {},
+            "order": 7,
             "mode": 0,
             "inputs": [
                 {
@@ -203,7 +255,7 @@
                     "links": []
                 }
             ],
-            "title": "Script",
+            "title": "Draft result",
             "properties": {
                 "Node name for S&R": "PreviewAny"
             },
@@ -211,12 +263,41 @@
             "widgets_values_named": {}
         },
         {
-            "id": 6,
+            "id": 5,
             "type": "PreviewAny",
-            "pos": [860, 620],
-            "size": [380, 140],
+            "pos": [890, 730],
+            "size": [340, 130],
             "flags": {},
-            "order": 6,
+            "order": 8,
+            "mode": 0,
+            "inputs": [
+                {
+                    "name": "source",
+                    "type": "*",
+                    "link": 4
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "STRING",
+                    "type": "STRING",
+                    "links": []
+                }
+            ],
+            "title": "Correction verdict",
+            "properties": {
+                "Node name for S&R": "PreviewAny"
+            },
+            "widgets_values": [],
+            "widgets_values_named": {}
+        },
+        {
+            "id": 7,
+            "type": "PreviewAny",
+            "pos": [890, 920],
+            "size": [340, 380],
+            "flags": {},
+            "order": 9,
             "mode": 0,
             "inputs": [
                 {
@@ -232,79 +313,28 @@
                     "links": []
                 }
             ],
-            "title": "Verdict",
+            "title": "Correction result",
             "properties": {
                 "Node name for S&R": "PreviewAny"
             },
             "widgets_values": [],
             "widgets_values_named": {}
-        },
-        {
-            "id": 7,
-            "type": "PreviewAny",
-            "pos": [1310, 40],
-            "size": [400, 720],
-            "flags": {},
-            "order": 7,
-            "mode": 0,
-            "inputs": [
-                {
-                    "name": "source",
-                    "type": "*",
-                    "link": 7
-                }
-            ],
-            "outputs": [
-                {
-                    "name": "STRING",
-                    "type": "STRING",
-                    "links": []
-                }
-            ],
-            "title": "Full result",
-            "properties": {
-                "Node name for S&R": "PreviewAny"
-            },
-            "widgets_values": [],
-            "widgets_values_named": {}
-        },
-        {
-            "id": 8,
-            "type": "MarkdownNote",
-            "pos": [40, 640],
-            "size": [300, 190],
-            "flags": {},
-            "order": 2,
-            "mode": 0,
-            "inputs": [],
-            "outputs": [],
-            "title": "Draft",
-            "properties": {},
-            "widgets_values": [
-                "## Draft\n\nEdit Product facts and choose Model.\n\nRun to write a structured script and check its factual claims. Read Script, Verdict and Full result."
-            ],
-            "widgets_values_named": {
-                "text": "## Draft\n\nEdit Product facts and choose Model.\n\nRun to write a structured script and check its factual claims. Read Script, Verdict and Full result."
-            },
-            "color": "#432",
-            "bgcolor": "#653"
         }
     ],
     "links": [
-        [1, 1, 0, 3, 0, "MUBIT_MODEL"],
-        [2, 2, 0, 3, 2, "STRING"],
+        [1, 1, 0, 2, 0, "STRING"],
+        [2, 1, 0, 3, 0, "STRING"],
         [3, 2, 0, 4, 0, "STRING"],
-        [4, 3, 0, 4, 1, "STRING"],
-        [5, 3, 0, 5, 0, "STRING"],
-        [6, 4, 0, 6, 0, "STRING"],
-        [7, 4, 1, 7, 0, "*"]
+        [4, 3, 0, 5, 0, "STRING"],
+        [5, 2, 1, 6, 0, "*"],
+        [6, 3, 1, 7, 0, "*"]
     ],
     "groups": [],
     "config": {},
     "extra": {
         "ds": {
-            "scale": 0.5680473372781065,
-            "offset": [251.66666666666674, 208.75]
+            "scale": 0.4186046511627907,
+            "offset": [898.8888888888889, 195]
         },
         "frontendVersion": "1.52.7"
     },
