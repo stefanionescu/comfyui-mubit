@@ -19,6 +19,8 @@ node_modules/
 /.markdownlint.jsonc
 /.prettierignore
 /prettier.config.mjs
+/pyrightconfig.json
+/ruff.toml
 
 # Paths that configurations leave out, such as installed dependencies and local secrets
 **/.dev.vars

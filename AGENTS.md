@@ -27,6 +27,7 @@ A more specific rule wins over a general one.
 - `.gspot/configurations/general/engineering/rules/CLI.md`: when you change a command-line program that the project ships.
 - `.gspot/configurations/general/engineering/rules/COMMENTS.md`: when you write or change a comment.
 - `.gspot/configurations/general/engineering/rules/ERRORS.md`: when you write code that raises, catches, or reports an error.
+- `.gspot/configurations/general/engineering/rules/HTTP.md`: when you change an HTTP service.
 - `.gspot/configurations/general/engineering/rules/PLANNING.md`: before you write a plan.
 - `.gspot/configurations/general/engineering/rules/SETTINGS.md`: when you change how a program reads its settings or environment.
 - `.gspot/configurations/general/engineering/rules/TASKS.md`: when you change `mise` tasks, `package.json` scripts, a `Makefile`, or another task runner.
@@ -55,5 +56,7 @@ Do not edit these files. Change `gspot.toml`, then run `bun run --no-install gsp
 - `.markdownlint.jsonc`
 - `.prettierignore`
 - `prettier.config.mjs`
+- `pyrightconfig.json`
+- `ruff.toml`
 
 <!-- <<< gspot managed <<< -->

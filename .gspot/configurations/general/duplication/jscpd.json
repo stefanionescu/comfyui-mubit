@@ -20,6 +20,8 @@
         "**/.artifacts/**",
         "**/.mise.local.toml",
         ".gspot/**",
+        "ruff.toml",
+        "pyrightconfig.json",
         ".markdownlint.jsonc",
         ".editorconfig",
         "prettier.config.mjs",

@@ -7,6 +7,7 @@ license = "MIT"
 license-files = ["LICENSE.md"]
 authors = [{ name = "Stefan Ionescu" }]
 requires-python = ">=3.12"
+dependencies = ["aiohttp>=3.12,<4"]
 
 [tool.comfy]
 DisplayName = "mubit"
@@ -16,3 +17,4 @@ requires-comfyui = ">=0.37.2"
 known_first_party = ["src"]
 # ComfyUI supplies these modules in its application environment.
 per_rule_ignores.DEP001 = ["comfy", "comfy_api"]
+per_rule_ignores.DEP003 = ["comfy", "comfy_api"]

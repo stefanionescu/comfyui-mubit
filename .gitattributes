@@ -7,4 +7,6 @@
 /.markdownlint.jsonc linguist-generated text eol=lf
 /.prettierignore linguist-generated text eol=lf
 /prettier.config.mjs linguist-generated text eol=lf
+/pyrightconfig.json linguist-generated text eol=lf
+/ruff.toml linguist-generated text eol=lf
 # <<< gspot managed <<<

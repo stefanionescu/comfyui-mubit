@@ -15,3 +15,15 @@ check = "prose/vale"
 rule = "gspot.title-case"
 paths = ["README.md"]
 reason = "The extension name is mubit, including its lowercase README title."
+
+[[ignore]]
+check = "python/vulture"
+names = ["get_node_list", "comfy_entrypoint", "define_schema", "execute"]
+paths = ["__init__.py", "src/nodes.py"]
+reason = "ComfyUI calls these registered entry points and node methods by name."
+
+[[ignore]]
+check = "structure/trivial-functions"
+names = ["get_node_list", "comfy_entrypoint", "define_schema"]
+paths = ["__init__.py", "src/nodes.py"]
+reason = "ComfyUI requires these entry points and schema methods."
