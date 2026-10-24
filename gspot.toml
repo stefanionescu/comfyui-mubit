@@ -16,6 +16,11 @@ paths = ["src/nodes.py"]
 reason = "Each ComfyUI node needs its own schema and typed execute entry point; the repeated declaration syntax belongs to those host interfaces."
 
 [[ignore]]
+check = "naming/paths"
+paths = ["web/docs/MubitAsk.md", "web/docs/MubitVerify.md"]
+reason = "ComfyUI locates each native help page using its exact registered node ID."
+
+[[ignore]]
 check = "prose/vale"
 rule = "gspot.title-case"
 paths = ["README.md"]
@@ -26,6 +31,11 @@ check = "python/vulture"
 names = ["get_node_list", "comfy_entrypoint", "define_schema", "execute"]
 paths = ["__init__.py", "src/nodes.py"]
 reason = "ComfyUI calls these registered entry points and node methods by name."
+
+[[ignore]]
+check = "structure/shared-prefixes"
+paths = ["example_workflows/*"]
+reason = "ComfyUI reads the flat example_workflows folder as same-basename JSON and JPG template pairs."
 
 [[ignore]]
 check = "structure/trivial-functions"

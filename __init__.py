@@ -8,6 +8,8 @@ from comfy_api.latest import ComfyExtension, io
 
 from .src.nodes import MubitAsk, MubitVerify
 
+WEB_DIRECTORY = './web'
+
 
 class Extension(ComfyExtension):
     """Expose the mubit nodes in the node menu."""
