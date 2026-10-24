@@ -11,11 +11,6 @@ enabled = true
 quotes = "single"
 
 [[ignore]]
-check = "duplication/jscpd"
-paths = ["src/nodes/**"]
-reason = "Each ComfyUI node needs its own schema and typed execute entry point; the repeated declaration syntax belongs to those host interfaces."
-
-[[ignore]]
 check = "naming/paths"
 paths = ["web/docs/MubitAsk.md", "web/docs/MubitVerify.md", "web/docs/MubitModel.md"]
 reason = "ComfyUI locates each native help page using its exact registered node ID."

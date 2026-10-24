@@ -31,7 +31,6 @@
         "**/.dev.vars",
         "**/.dev.vars.*",
         "**/bun.lock",
-        "**/.env*",
-        "src/nodes/**"
+        "**/.env*"
     ]
 }
