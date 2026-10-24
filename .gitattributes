@@ -1,0 +1,10 @@
+# >>> gspot managed >>>
+.gspot/** linguist-generated
+.gspot/** text eol=lf
+.gitignore text eol=lf
+.gitattributes text eol=lf
+/.editorconfig linguist-generated text eol=lf
+/.markdownlint.jsonc linguist-generated text eol=lf
+/.prettierignore linguist-generated text eol=lf
+/prettier.config.mjs linguist-generated text eol=lf
+# <<< gspot managed <<<

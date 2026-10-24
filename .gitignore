@@ -1,0 +1,17 @@
+.DS_Store
+.venv/
+node_modules/
+__pycache__/
+*.pyc
+.env
+.env.*
+.artifacts/
+.mise.local.toml
+
+# >>> gspot managed >>>
+.gspot/node_modules/
+.gspot/.venv/
+.gspot/vale/
+.gspot/state/
+.gspot/.yarnrc-install.yml
+# <<< gspot managed <<<

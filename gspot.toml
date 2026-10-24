@@ -1,0 +1,17 @@
+#:schema ./.gspot/gspot.schema.json
+# gspot settings for this repository. Change them with gspot set, unset, add, remove, ignore, and unignore.
+
+level = "all"
+configurations = ["python", "markdown", "licenses"]
+
+[hooks]
+enabled = true
+
+[format]
+quotes = "single"
+
+[[ignore]]
+check = "prose/vale"
+rule = "gspot.title-case"
+paths = ["README.md"]
+reason = "The extension name is mubit, including its lowercase README title."

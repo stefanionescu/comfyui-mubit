@@ -1,0 +1,6 @@
+{
+    "dependencies": {},
+    "devDependencies": {
+        "@gspothq/cli": "0.3.7"
+    }
+}
