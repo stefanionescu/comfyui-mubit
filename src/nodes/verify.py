@@ -9,6 +9,7 @@ from urllib.parse import urlsplit
 from comfy_api.latest import io
 
 from ..sapling import verify_claim
+from ..settings import read_connections
 from ..execution import wait_for_request
 
 
@@ -66,7 +67,8 @@ class MubitVerify(io.ComfyNode):
     ) -> io.NodeOutput:
         """Send text evidence and return the exact calibrated verdict."""
         del run_number
-        endpoint = os.environ.get('SAPLING_ENDPOINT', '').strip()
+        connections = read_connections(os.environ)
+        endpoint = connections['sapling_endpoint']
         address = urlsplit(endpoint)
         if (
             address.scheme != 'https'
@@ -83,7 +85,7 @@ class MubitVerify(io.ComfyNode):
         verdict, result, request_id = await wait_for_request(
             verify_claim(
                 endpoint=endpoint,
-                api_key=os.environ.get('SAPLING_API_KEY', '').strip(),
+                api_key=connections['sapling_api_key'],
                 policy=policy,
                 evidence=evidence,
                 claim=claim,

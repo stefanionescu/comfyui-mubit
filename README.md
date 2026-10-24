@@ -51,6 +51,16 @@ python main.py
 If your Sapling deployment requires a token, set `SAPLING_API_KEY` too.
 Restart ComfyUI after changing its environment. Provider keys stay in Mubit.
 
+Local ComfyUI settings panels can save connections through `GET /mubit/settings`
+and `PATCH /mubit/settings`. Use the fields `api_key`, `sapling_endpoint`, and
+`sapling_api_key`. A patch changes only supplied fields; an empty value clears
+that saved field. Send JSON with `X-Mubit-Comfy: 1` from the local ComfyUI page.
+The response reports each field's source and the endpoint, without returning keys.
+
+Saved connections persist outside ComfyUI's public folders. Server environment
+values take precedence. Connection changes take effect on the next request;
+change **run_number** when you need a fresh result for unchanged inputs.
+
 Find **Model**, **Ask**, and **Verify** under **mubit** in the node menu.
 Choose the provider and its model ID in **Model**, then connect it to **Ask**.
 

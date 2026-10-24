@@ -11,6 +11,7 @@ from comfy_api.latest import io
 from comfy_api_nodes.util import tensor_to_base64_string
 
 from ..gateway import send_text
+from ..settings import read_connections
 from ..execution import wait_for_request
 
 if TYPE_CHECKING:
@@ -90,9 +91,9 @@ class MubitAsk(io.ComfyNode):
     ) -> io.NodeOutput:
         """Validate inputs, make one request and parse requested JSON once."""
         del run_number
-        api_key = os.environ.get('MUBIT_API_KEY', '').strip()
+        api_key = read_connections(os.environ)['api_key']
         if not api_key:
-            message = 'Set MUBIT_API_KEY in the ComfyUI server environment and restart ComfyUI.'
+            message = 'Save a Mubit API key in connection settings, or set MUBIT_API_KEY in the server environment.'
             raise ValueError(message)
         if not instructions.strip() or not prompt.strip():
             message = 'Instructions and prompt must contain text.'
