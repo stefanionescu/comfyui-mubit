@@ -14,9 +14,15 @@ if TYPE_CHECKING:
 
 
 def _build_body(
-    model: Model, instructions: str, prompt: str, schema: dict[str, object] | None, images: list[str]
+    model: Model,
+    *,
+    instructions: str,
+    prompt: str,
+    schema: dict[str, object] | None,
+    images: list[str],
+    audio: list[str],
 ) -> dict[str, object]:
-    """Encode the selected provider's chat or Messages request."""
+    """Encode the selected provider's chat or Messages request. Only the OpenRouter route receives audio."""
     if model.provider == 'Anthropic':
         content = [{'type': 'text', 'text': prompt}] + [
             {'type': 'image', 'source': {'type': 'base64', 'media_type': 'image/png', 'data': data}} for data in images
@@ -35,8 +41,10 @@ def _build_body(
         if output:
             body['output_config'] = output
         return body
-    content = [{'type': 'text', 'text': prompt}] + [
-        {'type': 'image_url', 'image_url': {'url': f'data:image/png;base64,{data}'}} for data in images
+    content = [
+        {'type': 'text', 'text': prompt},
+        *({'type': 'image_url', 'image_url': {'url': f'data:image/png;base64,{data}'}} for data in images),
+        *({'type': 'input_audio', 'input_audio': {'data': data, 'format': 'wav'}} for data in audio),
     ]
     body = {
         'model': model.id,
@@ -64,9 +72,10 @@ async def send_text(
     prompt: str,
     schema: dict[str, object] | None,
     images: list[str],
+    audio: list[str],
 ) -> tuple[str, str]:
     """Submit one request and return its answer and Mubit request ID."""
-    body = _build_body(model, instructions, prompt, schema, images)
+    body = _build_body(model, instructions=instructions, prompt=prompt, schema=schema, images=images, audio=audio)
     path = '/messages' if model.provider == 'Anthropic' else '/chat/completions'
     url = f'https://api.mubit.ai{PROVIDERS[model.provider]}{path}'
     headers = {'Authorization': f'Bearer {api_key}'}
