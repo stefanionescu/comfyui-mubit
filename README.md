@@ -148,6 +148,8 @@ gspot also runs through the local Git hooks. Check staged changes with `bun run 
 | Missing example photos      | Upload the included photos through the two Load Image nodes.                                                 |
 | Verdict stays `unsure`      | Read the prediction set and evidence. Preserve the calibrated status.                                        |
 
+Failed Ask calls include the Mubit request ID when supplied. Use that ID to investigate the call with Mubit.
+
 ## License
 
 Code uses the [MIT license](LICENSE.md).

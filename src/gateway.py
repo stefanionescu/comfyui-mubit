@@ -33,11 +33,13 @@ async def send_text(
             aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=300)) as session,
             session.post(url, json=body, headers={'x-goog-api-key': api_key}, allow_redirects=False) as response,
         ):
+            request_id = response.headers.get('x-middleware-request-id', '')
             if response.status != HTTPStatus.OK:
                 message = f'Mubit returned HTTP {response.status}. Check provider access, quota, and billing in Mubit.'
+                if request_id:
+                    message += f' Mubit request ID: {request_id}.'
                 raise RuntimeError(message)
             result = await response.json()
-            request_id = response.headers.get('x-middleware-request-id', '')
     except TimeoutError as error:
         message = 'Mubit timed out after 300 seconds. Check the request before running it again.'
         raise RuntimeError(message) from error

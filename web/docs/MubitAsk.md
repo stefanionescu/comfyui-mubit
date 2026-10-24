@@ -46,3 +46,4 @@ For a structured answer, use a schema such as:
 Missing configuration, blank required inputs and invalid schema JSON fail before submission.
 An incomplete, blocked, or malformed answer stops execution. Requests time out after 300 seconds.
 **Stop** cancels the local HTTP task. Requests have no automatic retries.
+HTTP errors include the Mubit request ID when supplied.
