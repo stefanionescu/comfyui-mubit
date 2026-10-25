@@ -22,7 +22,7 @@ def _build_body(
     images: list[str],
     audio: list[str],
 ) -> dict[str, object]:
-    """Encode the selected provider's chat or Messages request. Only the OpenRouter route receives audio."""
+    """Encode the selected provider's chat or Messages request. Only the OpenRouter and Gemini routes receive audio."""
     if model.provider == 'Anthropic':
         content = [{'type': 'text', 'text': prompt}] + [
             {'type': 'image', 'source': {'type': 'base64', 'media_type': 'image/png', 'data': data}} for data in images

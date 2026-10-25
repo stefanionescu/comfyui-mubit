@@ -13,6 +13,7 @@ import asyncio
 from comfy_api.latest import io
 from comfy_api_nodes.util import tensor_to_base64_string
 
+from ..models import AUDIO_PROVIDERS
 from ..gateway import send_text
 from ..settings import read_connections
 from ..execution import wait_for_request
@@ -79,7 +80,10 @@ class MubitAsk(io.ComfyNode):
                 io.Audio.Input(
                     'audio',
                     optional=True,
-                    tooltip='Speech or sound, sent as one complete WAV file. Needs OpenRouter and an audio model.',
+                    tooltip=(
+                        'Speech or sound, sent as one complete WAV file. Needs OpenRouter or Gemini, and a model that '
+                        'hears audio.'
+                    ),
                 ),
                 io.String.Input(
                     'instructions',
@@ -127,9 +131,10 @@ class MubitAsk(io.ComfyNode):
         if not instructions.strip() or not prompt.strip():
             message = 'Instructions and prompt must contain text.'
             raise ValueError(message)
-        if audio is not None and model.provider != 'OpenRouter':
+        if audio is not None and model.provider not in AUDIO_PROVIDERS:
             message = (
-                'Audio input works with the OpenRouter provider. Select OpenRouter on Model, or disconnect the audio.'
+                'Audio input works with the OpenRouter and Gemini providers. Select one of them on Model, or '
+                'disconnect the audio.'
             )
             raise ValueError(message)
         schema = None

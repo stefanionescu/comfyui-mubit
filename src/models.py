@@ -12,6 +12,9 @@ PROVIDERS = {
     'Mistral': '/compat/mistral/v1',
 }
 
+# The providers whose routes take audio in a chat message, as an input_audio part.
+AUDIO_PROVIDERS = ('OpenRouter', 'Gemini')
+
 
 @dataclass(frozen=True)
 class Model:
